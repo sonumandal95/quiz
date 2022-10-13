@@ -11,7 +11,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/question" element={<Question />}/>
         <Route path="/subject" element={<Subject />} />
-        <Route path="/numbers" element={<Numbers />} />
+        <Route path="/numbers/:subject" element={<Numbers />} />
       </Routes>
   );
 }

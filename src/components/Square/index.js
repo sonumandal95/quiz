@@ -1,11 +1,16 @@
 import { Button } from '@mui/material';
-import React from 'react'
+import React, {useState} from 'react'
 import styled from '@emotion/styled'
 
 const Square = ({ question }) => {
+  const [disabledButton, setDisabledButton] = useState(question.enable)
 
   const handleNumberClicked = () => {
-    question.enable = false;
+    setDisabledButton(!disabledButton)
+    const id = question.id;
+    console.log(id)
+    // call api this id
+    // open next page
   }
 
   const Container = styled.div(props => ({
@@ -16,7 +21,7 @@ const Square = ({ question }) => {
 
   return (
     <Container>
-      <Button variant="outlined" size='large' disabled={!question.enable} onClick={handleNumberClicked}>{question.id}</Button>
+      <Button variant="contained" size='large' disabled={!disabledButton} onClick={handleNumberClicked}>{question.id}</Button>
     </Container>
   )
 }
