@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "subject": "computer",
+        "question": "Full form of RAM",
+        "ans": ["Read Access Memory", "Random Access Memory", "Read Automatic Memory", "Random Automatic Memory"],
+        "correctAns": "Random Access Memory",
+        "enable": true
+    }
+]

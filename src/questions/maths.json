@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "subject": "maths",
+        "question": "2+2",
+        "ans": ["4", "0", "6", "-1"],
+        "correctAns": "4",
+        "enable": true
+    },
+    {
+        "id": 2,
+        "subject": "maths",
+        "question": "4+2",
+        "ans": ["4", "0", "6", "-1"],
+        "correctAns": "6",
+        "enable": false
+    },
+    {
+        "id": 3,
+        "subject": "computer",
+        "question": "Full form of RAM",
+        "ans": ["Read Access Memory", "Random Access Memory", "Read Automatic Memory", "Random Automatic Memory"],
+        "correctAns": "Random Access Memory",
+        "enable": true
+    }
+]
