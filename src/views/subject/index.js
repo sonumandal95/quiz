@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Grid, Link } from '@mui/material';
 import styled from '@emotion/styled'
 
-const Select = (props, route) => {
+const Subject = (props, route) => {
 
   const subjects = ["Computers", "Maths", "GK", "Science"]
 
@@ -30,4 +30,4 @@ const Select = (props, route) => {
   )
 };
 
-export default Select;
+export default Subject;
