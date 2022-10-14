@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../../utils/api"
 
 const Square = ({ question }) => {
   console.log("question: ", question)
@@ -10,17 +11,12 @@ const Square = ({ question }) => {
   const navigate = useNavigate();
 
   const handleNumberClicked = async () => {
-    // setDisabledButton(!disabledButton)
+    setDisabledButton(!disabledButton)
     const { id, subject } = question;
     console.log(id)
-    // const response = await axios.put(`http://localhost:5000/${subject.toLowerCase()}/${parseInt(id)}`)
-    // console.log(response.data)
+    const response = await axios.put(`${apiUrl}/${subject.toLowerCase()}/${parseInt(id)}`)
+    console.log(response.data)
     navigate('/question', { state: { question } });
-    // Navigate(`/question`, {question})
-    // window.open(`/question`, "_seif")
-
-    // call api this id
-    // open next page   
   }
 
   const Container = styled.div(props => ({

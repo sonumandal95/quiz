@@ -3,6 +3,7 @@ import Square from '../../components/Square'
 import { useParams } from 'react-router-dom';
 import { Grid } from '@mui/material'
 import axios from 'axios';
+import { apiUrl } from '../../utils/api';
 
 const Number = () => {
   const [questions, setQuestions] = useState([])
@@ -11,7 +12,7 @@ const Number = () => {
     const init = async () => {
       try {
         if (!subject) window.open(`/subject`, "_self")
-        const response = await axios.get(`http://localhost:5000/${subject.toLowerCase()}`)
+        const response = await axios.get(`${apiUrl}/${subject.toLowerCase()}`)
         console.log(response)
         setQuestions(response.data)
       } catch {
