@@ -12,9 +12,9 @@ const Square = ({ question }) => {
 
   const handleNumberClicked = async () => {
     setDisabledButton(!disabledButton)
-    const { id, subject } = question;
+    const { id, round } = question;
     console.log(id)
-    const response = await axios.put(`${apiUrl}/${subject.toLowerCase()}/${parseInt(id)}`)
+    const response = await axios.put(`${apiUrl}/${round.toLowerCase()}/${parseInt(id)}`)
     console.log(response.data)
     navigate('/question', { state: { question } });
   }

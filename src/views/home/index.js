@@ -1,21 +1,23 @@
 import React from 'react';
-import { Button, Link } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import styled from '@emotion/styled'
 
 const Home = () => {
   const Container = styled.div(props => ({
     display: 'flex',
     flexDirection: props.column && 'column',
-    marginRight: '20px',
+    marginTop: '150px',
     justifyContent: 'center'
   }))
   const handleNextClick = () => {
-    window.open(`/subject`, "_self")
+    window.open(`/round`, "_self")
   }
 
   return (
     <div style={{ 'textAlign': 'center' }}>
-      <h1>Click next to continue</h1>
+      <h2>St. Robert's High School, Parsudih</h2>
+      <Grid><img width={250} height={250} src="schoolLogo.png" /></Grid>
+      <h3>Welcome to Science Quiz</h3>
       <Container>
         <Button variant="contained" onClick={handleNextClick}>Next</Button>
       </Container>

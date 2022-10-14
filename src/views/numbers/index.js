@@ -7,12 +7,12 @@ import { apiUrl } from '../../utils/api';
 
 const Number = () => {
   const [questions, setQuestions] = useState([])
-  const { subject } = useParams()
+  const { round } = useParams()
   useEffect(() => {
     const init = async () => {
       try {
-        if (!subject) window.open(`/subject`, "_self")
-        const response = await axios.get(`${apiUrl}/${subject.toLowerCase()}`)
+        if (!round) window.open(`/round`, "_self")
+        const response = await axios.get(`${apiUrl}/${round.toLowerCase()}`)
         console.log(response)
         setQuestions(response.data)
       } catch {

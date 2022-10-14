@@ -45,7 +45,7 @@ const Question = () => {
       alert("Please answer.");
     } else {
       setOpenDialog(false);
-      window.open("/subject", "_self");
+      window.open("/round", "_self");
     }
   };
   const handleBackDrop = (e) => {
@@ -57,14 +57,19 @@ const Question = () => {
         <CardContent>
           <Grid item lg={12} md={12} sm={12}>
             <FormLabel for="QID">
-              <b>Question Id :- </b>
+              <b>Question number: </b>
             </FormLabel>
-
             <FormLabel sx={{ ml: 3 }}>{question.id}</FormLabel>
           </Grid>
           <Grid item lg={12} md={12} sm={12} sx={{ mt: 3, mb: 3 }}>
             <FormLabel>
-              <b>Subject :- </b>
+              <b>Round: </b>
+            </FormLabel>
+            <FormLabel sx={{ ml: 3 }}>{question.round}</FormLabel>
+          </Grid>
+          <Grid item lg={12} md={12} sm={12} sx={{ mt: 3, mb: 3 }}>
+            <FormLabel>
+              <b>Subject: </b>
             </FormLabel>
             <FormLabel sx={{ ml: 3 }}>{question.subject}</FormLabel>
           </Grid>
@@ -77,7 +82,7 @@ const Question = () => {
           <Divider />
           <Grid item lg={12} md={12} sm={12} sx={{ mt: 3 }}>
             <FormLabel>
-              <b>Question : </b>
+              <b>Question: </b>
             </FormLabel>
             <FormLabel sx={{ ml: 3 }}>{question.question}</FormLabel>
             <FormLabel sx={{ ml: 3 }}>{question.questionHindi}</FormLabel>
