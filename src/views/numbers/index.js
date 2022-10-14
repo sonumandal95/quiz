@@ -23,7 +23,7 @@ const Number = () => {
   }, [])
   return (
     <div style={{ 'textAlign': 'center' }}>
-      <h1>Select a question number</h1>
+      <h2>Select a question number</h2>
       <Grid container style={{ 'justifyContent': 'center' }}>
         {questions.map((question, index) => {
           return (<Square key={index} question={question}></Square>)
