@@ -38,7 +38,7 @@ const Round = () => {
   }
 
   const handleOpenRule1 = () => {
-    const data = "Rule 1"
+    const data = "Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints. For example, xs={12} sm={6} sizes a component to occupy half of the viewport width (6 columns) when viewport width is 600 or more pixels. For smaller viewports, the component fills all 12 available columns."
     setRules(data);
     setOpenRuleDialog(true);
   }
@@ -54,15 +54,18 @@ const Round = () => {
       <h2>Rounds</h2>
       <Box>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid container style={{ justifyContent: 'center', marginBottom: 20 }}>
+          <Grid container style={{ justifyContent: 'center', marginBottom: '30px' }}>
             <IconButton color="primary" aria-label="rules" component="label" onClick={handleOpenRule1}>
               <Info />
             </IconButton>
           </Grid>
-          <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{ justifyContent: 'center' }}>
+          <Grid 
+            container 
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
+            style={{ justifyContent: 'center', marginLeft: '2px' }}>
             {rounds.map((round, index) =>
               <Container key={round}>
-                <Button variant="contained" onClick={() => handleSubjectClick(round)}>Round {index + 1}</Button>
+                <Button style={{ margin: '0px 10px 0px 10px'}} variant="contained" onClick={() => handleSubjectClick(round)}>Round {index + 1}</Button>
               </Container>
             )}
           </Grid>
@@ -70,7 +73,7 @@ const Round = () => {
       </Box>
       <Box>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid container style={{ justifyContent: 'center', marginBottom: 20 }}>
+          <Grid container style={{ justifyContent: 'center', marginBottom: '30px' }}>
             <IconButton color="primary" aria-label="rules" component="label" onClick={handleOpenRule2}>
               <Info />
             </IconButton>
