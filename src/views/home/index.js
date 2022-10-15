@@ -5,23 +5,25 @@ import styled from '@emotion/styled'
 const Home = () => {
   const Container = styled.div(props => ({
     display: 'flex',
-    flexDirection: props.column && 'column',
-    marginTop: '150px',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    verticalAlign: 'middle',
+    textAlign: 'center',
+    fontSize: '1.9vw'
   }))
+
   const handleNextClick = () => {
     window.open(`/round`, "_self")
   }
 
   return (
-    <div style={{ 'textAlign': 'center' }}>
-      <h2>St. Robert's High School, Parsudih</h2>
-      <Grid><img width={250} height={250} src="schoolLogo.png" /></Grid>
-      <h2>Welcome to Science Quiz</h2>
-      <Container>
-        <Button variant="contained" onClick={handleNextClick}>Next</Button>
-      </Container>
-    </div>
+    <Container>
+      <Grid rowSpacing={2}>
+        <h2>St. Robert's High School, Parsudih</h2>
+        <img width={'50%'} height={'50%'} src="schoolLogo.png" />
+        <h2>Welcome to Science Quiz</h2>
+        <Button style={{ fontSize: '1.5vw', padding: '0% 2% 0% 2%' }} variant="contained" onClick={handleNextClick}>Next</Button>
+      </Grid>
+    </Container>
   )
 };
 

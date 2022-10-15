@@ -22,14 +22,14 @@ const Number = () => {
     init()
   }, [])
   return (
-    <div style={{ 'textAlign': 'center' }}>
+    <Grid style={{ textAlign: 'center', fontSize: '2vw' }}>
       <h2>Select a question number</h2>
-      <Grid container style={{ 'justifyContent': 'center' }}>
+      <Grid container columnSpacing={2} style={{ 'justifyContent': 'center' }}>
         {questions.map((question, index) => {
           return (<Square key={index} question={question}></Square>)
         })}
       </Grid>
-    </div>
+    </Grid>
   )
 };
 

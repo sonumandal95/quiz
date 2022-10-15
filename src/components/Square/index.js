@@ -22,13 +22,13 @@ const Square = ({ question }) => {
   const Container = styled.div(props => ({
     display: 'flex',
     flexDirection: props.column && 'column',
-    marginRight: '20px',
-    marginTop: '20px'
+    margin: '5% 2% 2% 2%',
+    width: '5%'
   }))
 
   return (
     <Container>
-      <Button variant="contained" size='large' disabled={!disabledButton} onClick={handleNumberClicked}>{question.id}</Button>
+      <Button style={{ fontSize: '1.5vw', borderRadius: '1rem', width: '100%' }} variant="contained" size='large' disabled={!disabledButton} onClick={handleNumberClicked}>{question.id}</Button>
     </Container>
   )
 }
