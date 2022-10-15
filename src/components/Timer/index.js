@@ -35,9 +35,10 @@ const Timer = (props) => {
             color: `${minutes === 0 && seconds < 20 ? 'red' : 'green'}`
           }}
         >
-          {minutes === 0 ? ` ${minutes} minute ` : ` ${minutes} minutes `}:
+          {/* {minutes === 0 ? ` ${minutes} minute ` : ` ${minutes} minutes `}:
           {seconds < 10 ? ` 0${seconds}` : ` ${seconds}`}
-          {seconds < 1 ? ' second ' : ' seconds '}
+          {seconds < 1 ? ' second ' : ' seconds '} */}
+          {seconds}
         </FormLabel>
       )}
     </>

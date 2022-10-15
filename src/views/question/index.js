@@ -52,7 +52,7 @@ const Question = () => {
       alert("Please close.");
     } else {
       setOpenDialog(false);
-      //window.open("/round", "_self");
+      window.open("/round", "_self");
     }
   };
   const handleBackDrop = (e) => {
@@ -67,10 +67,9 @@ const Question = () => {
   // };
 
   const handleTimeOut = () => {
+    console.log("time out")
     setOpenDialog(true);
-    // sleep for 2 sec
-    // setOpenDialog(false);
-    // window.open("/round", "_self");
+    window.open("/round", "_self");
   }
 
   return (
