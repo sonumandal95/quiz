@@ -90,7 +90,7 @@ const Question = () => {
               <b>Subject: </b>
             </FormLabel>
             <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{question.subject}</FormLabel>
-            <Timer seconds={3} onTimeOut={handleTimeOut} />
+            <Timer seconds={60} onTimeOut={handleTimeOut} />
           </Grid>
           <Typography
             variant="h6"
