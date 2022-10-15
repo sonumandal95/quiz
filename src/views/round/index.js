@@ -50,6 +50,7 @@ const Round = () => {
     setOpenRuleDialog(true);
   };
 
+
   return (
     <div style={{ textAlign: "center", fontSize: '2vw' }}>
       <h2>Rounds</h2>
@@ -107,7 +108,18 @@ const Round = () => {
           </Grid>
           <Grid container rowSpacing={1} style={{ justifyContent: "center" }}>
             <Container>
-              <Button style={{ fontSize: '1.5vw', borderRadius: '1rem', paddingLeft: '3rem', paddingRight: '2rem' }} variant="contained">Round 5</Button>
+              <Button
+                style={{
+                  fontSize: '1.5vw',
+                  borderRadius: '1rem',
+                  paddingLeft: '3rem',
+                  paddingRight: '2rem'
+                }}
+                variant="contained"
+                onClick={() => handleSubjectClick('round5')}
+              >
+                Round 5
+              </Button>
             </Container>
           </Grid>
         </Grid>
