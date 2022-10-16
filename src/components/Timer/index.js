@@ -38,7 +38,7 @@ const Timer = (props) => {
           {/* {minutes === 0 ? ` ${minutes} minute ` : ` ${minutes} minutes `}:
           {seconds < 10 ? ` 0${seconds}` : ` ${seconds}`}
           {seconds < 1 ? ' second ' : ' seconds '} */}
-          {seconds}
+          Time: {seconds}
         </FormLabel>
       )}
     </>

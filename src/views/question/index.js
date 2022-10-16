@@ -33,16 +33,16 @@ const Question = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogMsg, setDialogMsg] = useState("")
   console.log("question", question);
-  
+
   const handleAnswer = (event, value) => {
     console.log(value);
     setUserAnswer(value);
     setOpenDialog(true);
 
     if (question.correctAns.toLowerCase() === value.toLowerCase()) {
-      setDialogMsg("Congratulations! You have given correct Answer.")
+      setDialogMsg("Congratulations! You have given Correct Answer.")
     } else {
-      setDialogMsg("Better Luck Next Time.")
+      setDialogMsg("Better Luck Next Time...")
     }
   };
 
@@ -60,7 +60,25 @@ const Question = () => {
 
   const handleTimeOut = () => {
     setOpenDialog(true);
-    setDialogMsg("Your time is up.")
+    setDialogMsg("!!! Sorry !!! Your Time is Up")
+  }
+
+  const handleRoundNextButtonClick = (questionNumber) => {
+    if (questionNumber === 10)
+      window.open("/round", "_self");
+    else
+      window.open("numbers/round5", "_self");
+  }
+
+  const printRound = (roundNumber) => {
+    const rounds = {
+      "round1": 1,
+      "round2": 2,
+      "round3": 3,
+      "round4": 4,
+      "round5": 5,
+    }
+    return rounds[roundNumber]
   }
 
   return (
@@ -75,12 +93,18 @@ const Question = () => {
             <FormLabel style={{ fontSize: '1.5vw', marginLeft: '10%' }}>
               <b>Round: </b>
             </FormLabel>
-            <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{question.round}</FormLabel>
+            <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{printRound(question.round)}</FormLabel>
             <FormLabel style={{ fontSize: '1.5vw', marginLeft: '10%' }}>
               <b>Subject: </b>
             </FormLabel>
             <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{question.subject}</FormLabel>
-            <Timer seconds={60} onTimeOut={handleTimeOut} />
+            {
+              (question.round === "round5") ?
+                null
+                :
+                <Timer seconds={60} onTimeOut={handleTimeOut} />
+            }
+
           </Grid>
           <Divider />
           <Grid container specing={2}>
@@ -113,8 +137,8 @@ const Question = () => {
                 >
                   <Grid style={{ fontSize: '3.5vw', width: '100%' }}>
                     {question.ans.map((ans, index) => {
-                      let ans1 = 
-                          <b style={{ fontSize: '4vw' }}>&nbsp;&nbsp;&nbsp;{ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
+                      let ans1 =
+                        <b style={{ fontSize: '4vw' }}>&nbsp;&nbsp;&nbsp;{ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
 
                       return question.round === "round5" ? (
                         null
@@ -147,6 +171,18 @@ const Question = () => {
           </Button>
         </CardActions> */}
       </Card>
+      {question.round === "round5" ? <Button
+        style={{
+          fontSize: '1.5vw',
+          borderRadius: '1rem',
+          paddingLeft: '3rem',
+          paddingRight: '2rem'
+        }}
+        variant="contained"
+        onClick={() => handleRoundNextButtonClick(question.id)}
+      >
+        Next
+      </Button> : null}
       <Dialog
         open={openDialog}
         onClose={(e, s) => handleClose(e, s)}
