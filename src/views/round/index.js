@@ -14,7 +14,7 @@ import Info from "@mui/icons-material/Info";
 
 const Round = () => {
   const [openRuleDialog, setOpenRuleDialog] = useState(false);
-  const [rules, setRules] = useState("");
+  const [rules, setRules] = useState([]);
   const rounds = ["round1", "round2", "round3", "round4"];
   const Container = styled.div((props) => ({
     display: "flex",
@@ -37,19 +37,32 @@ const Round = () => {
   };
 
   const handleOpenRule1 = () => {
-    const data =
-      "Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints. For example, xs={12} sm={6} sizes a component to occupy half of the viewport width (6 columns) when viewport width is 600 or more pixels. For smaller viewports, the component fills all 12 available columns.";
+    const data = [
+      "क्विज में 5 राउंड होंगे।",
+      "पहले 4 राउंड में प्रत्येक ग्रुप से पूछे जाने वाले प्रश्नों (Questions) के चार विकल्प (Options) होंगे प्रश्न समाप्त होने के बाद सही विकल्प (Option) को उत्तर दे।",
+      "प्रत्येक राउंड में प्रत्येक ग्रुप से दो दो प्रश्न पूछे जाएंगे। जिस ग्रुप से प्रश्न पूछा जाएगा वे 1 से 10 में किसी भी प्रश्न का चुनाव कर सकते हैं।",
+      "प्रत्येक सही उत्तर (Answer) के लिए 10 marks दिए जाएंगे। गलत उत्तर के लिए कोई marks नहीं दिया जाएगा, पहले 4 राउंड में कोई Negative marks नहीं है।",
+      "प्रत्येक प्रश्न (Question) का उत्तर (Answer) देने के लिए 60 सेकंड का समय दिया जाएगा।",
+      "पहले 4 राउंड (Round) में प्रश्न (Question), दसरे ग्रुप को पास नहीं होंगे।"
+    ]
     setRules(data);
     setOpenRuleDialog(true);
   };
 
   const handleOpenRule2 = () => {
-    const data =
-      "Components may have multiple widths defined, causing the layout to change at the defined breakpoint. \nWidth values given to";
+    const data = [
+      "पहले 4 Round की तरह इस राउंड में भी प्रत्येक Group से दो दो प्रश्न पुचे जाएंगे।",
+      "इस Round में सही उत्तर (Answer) के लिए 10 marks दिए जाएंगे। गलत उत्तर के लिए minus 5 marks होंगे उत्तर नहीं जान्ने पर आप Question पास कर सकते हैं। पास प्रश्न के लिए minus marks नहीं है।",
+      "पास Question अलग ग्रुप के पास जायेगा और उनके सही Answer के लिए 5 marks और गलत उत्तर के लिए - 5 marks दीये जाएंगे।",
+    ]
     setRules(data);
     setOpenRuleDialog(true);
   };
 
+  const handleDialogClose = () => {
+    setOpenRuleDialog(!openRuleDialog)
+    setRules([])
+  }
 
   return (
     <div style={{ textAlign: "center", fontSize: '2vw' }}>
@@ -126,12 +139,22 @@ const Round = () => {
       </Box>
       <Dialog
         open={openRuleDialog}
-        onClose={() => setOpenRuleDialog(!openRuleDialog)}
+        onClose={handleDialogClose}
         maxWidth="10">
-        <DialogTitle style={{ fontSize: '2vw' }}>Rules</DialogTitle>
+        <DialogTitle style={{ fontSize: '2vw' }}>
+                Rules
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <Typography style={{ fontSize: '1.5vw' }}>{rules}</Typography>
+            <Typography style={{ fontSize: '1.5vw' }}>
+              {rules.map((rule, index) => {
+                return (
+                  <p>
+                    {index + 1}. {rule}
+                  </p>
+                )
+              })}
+            </Typography>
           </DialogContentText>
         </DialogContent>
       </Dialog>

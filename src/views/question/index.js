@@ -68,8 +68,8 @@ const Question = () => {
 
   const handleTimeOut = () => {
     console.log("time out")
-    setOpenDialog(true);
-    window.open("/round", "_self");
+    // setOpenDialog(true);
+    // window.open("/round", "_self");
   }
 
   return (
@@ -78,7 +78,7 @@ const Question = () => {
         <CardContent>
           <Grid style={{ margin: '1% 0% 1% 0%' }}>
             <FormLabel for="QID" style={{ fontSize: '1.5vw' }}>
-              <b>Question number: </b>
+              <b>Question Number: </b>
             </FormLabel>
             <FormLabel sx={{ ml: 3 }} style={{ fontSize: '1.5vw' }}>{question.id}</FormLabel>
             <FormLabel style={{ fontSize: '1.5vw', marginLeft: '10%' }}>
@@ -101,16 +101,18 @@ const Question = () => {
           <Divider />
           <Grid container specing={2}>
             <Grid item lg={11} md={10} sm={10} sx={{ mt: 3 }}>
-              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '3.5vw' }}>
+              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '5vw' }}>
                 <b>{question.question}</b>
               </FormLabel>
-              <FormLabel sx={{ ml: 3 }}>
-                <Typography style={{ fontSize: '3.5vw' }}>
-                  <i>{question.questionHindi}</i>
-                </Typography>
-              </FormLabel>
+              {question.questionHindi ?
+                (<FormLabel sx={{ ml: 3 }}>
+                  <Typography style={{ fontSize: '5vw' }}>
+                    <i>{question.questionHindi}</i>
+                  </Typography>
+                </FormLabel>) : null
+              }
             </Grid>
-            <Grid item lg={12} md={12} sm={12}>
+            <Grid item >
               <FormControl>
                 <RadioGroup
                   aria-label="question"
@@ -119,24 +121,23 @@ const Question = () => {
                   onChange={(e) => {
                     handleAnswer(e, e.target.value);
                   }}
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: '3vw',
+                    }
+                  }}
                 >
-                  <Grid specing={3} style={{ fontSize: '3.5vw' }}>
+                  <Grid style={{ fontSize: '3.5vw', width: '100%' }}>
                     {question.ans.map((ans, index) => {
-                      let ans1 = (
-                        <>
-                          <b style={{ fontSize: '2vw' }}>&nbsp;&nbsp;&nbsp;{ans}</b>
-                          <br />
-                          <i style={{ fontSize: '2vw' }}>&nbsp;&nbsp;&nbsp;{question.ansHindi[index]}</i>
-                        </>
-                      );
+                      let ans1 = 
+                          <b style={{ fontSize: '4vw' }}>&nbsp;&nbsp;&nbsp;{ans}, {question.ansHindi[index] ? question.ansHindi[index] : null}</b>
 
-                      return question.round === "round4" ? (
-                        ""
+                      return question.round === "round5" ? (
+                        null
                       ) : (
-                        <Grid item lg={6} md={6} sm={6} sx={{ mt: 3 }}>
+                        <Grid item>
                           <FormControlLabel
                             key={ans}
-                            sx={{ ml: 3 }}
                             value={ans}
                             control={<Radio />}
                             label={ans1}
