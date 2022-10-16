@@ -6,16 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { apiUrl } from "../../utils/api"
 
 const Square = ({ question }) => {
-  console.log("question: ", question)
   const [disabledButton, setDisabledButton] = useState(question.enable)
   const navigate = useNavigate();
 
   const handleNumberClicked = async () => {
     setDisabledButton(!disabledButton)
     const { id, round } = question;
-    console.log(id)
     const response = await axios.put(`${apiUrl}/${round.toLowerCase()}/${parseInt(id)}`)
-    console.log(response.data)
     navigate('/question', { state: { question } });
   }
 

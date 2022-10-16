@@ -24,24 +24,28 @@ import { useLocation } from "react-router-dom";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ClearIcon from '@mui/icons-material/Clear';
+import TimerOffIcon from '@mui/icons-material/TimerOff';
 import Timer from "../../components/Timer";
 
 const Question = () => {
   const location = useLocation();
   const question = location.state?.question;
   const [userAnswer, setUserAnswer] = useState("");
-  const [openDialog, setOpenDialog] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false)
   const [dialogMsg, setDialogMsg] = useState("")
-  console.log("question", question);
+  const [dialogIcon, setDialogIcon] = useState("")
+
+  const timerValue = 60
 
   const handleAnswer = (event, value) => {
-    console.log(value);
     setUserAnswer(value);
     setOpenDialog(true);
 
     if (question.correctAns.toLowerCase() === value.toLowerCase()) {
+      setDialogIcon("success")
       setDialogMsg("Congratulations! You have given Correct Answer.")
     } else {
+      setDialogIcon("failed")
       setDialogMsg("Better Luck Next Time...")
     }
   };
@@ -59,8 +63,11 @@ const Question = () => {
   };
 
   const handleTimeOut = () => {
-    setOpenDialog(true);
-    setDialogMsg("!!! Sorry !!! Your Time is Up")
+    setOpenDialog(true)
+    if (dialogIcon === "") {
+      setDialogIcon("warning")
+      setDialogMsg("!!! Sorry !!! Your Time is Up")
+    }
   }
 
   const handleRoundNextButtonClick = (questionNumber) => {
@@ -78,7 +85,19 @@ const Question = () => {
       "round4": 4,
       "round5": 5,
     }
-    return rounds[roundNumber]
+    return rounds[roundNumber];
+  }
+
+  const showDialogIcon = (dialogIconText) => {
+    if (dialogIconText === "success") {
+      return <CheckCircleIcon style={{ fontSize: '10vw', color: 'green' }} />
+    }
+    else if (dialogIconText === "failed") {
+      return <CancelIcon style={{ fontSize: '8vw', color: 'red' }} />
+    }
+    else {
+      return <TimerOffIcon style={{ fontSize: '8vw', color: '#efbe0b' }} />
+    }
   }
 
   return (
@@ -102,7 +121,7 @@ const Question = () => {
               (question.round === "round5") ?
                 null
                 :
-                <Timer seconds={60} onTimeOut={handleTimeOut} />
+                <Timer seconds={timerValue} onTimeOut={handleTimeOut} />
             }
 
           </Grid>
@@ -161,18 +180,19 @@ const Question = () => {
         </CardContent>
         <Divider />
       </Card>
-      {question.round === "round5" ? <Button
-        style={{
-          fontSize: '1.5vw',
-          borderRadius: '1rem',
-          paddingLeft: '3rem',
-          paddingRight: '2rem'
-        }}
-        variant="contained"
-        onClick={() => handleRoundNextButtonClick(question.id)}
-      >
-        Next
-      </Button> : null}
+      <Grid style={{textAlign: 'center', marginTop: '5%'}}>
+        {question.round === "round5" ? <Button
+          style={{
+            fontSize: '1.5vw',
+            borderRadius: '1rem',
+            paddingLeft: '3rem',
+            paddingRight: '2rem'
+          }}
+          variant="contained"
+          onClick={() => handleRoundNextButtonClick(question.id)}
+        >
+          Next
+        </Button> : null}</Grid>
       <Dialog
         open={openDialog}
         onClose={(e, s) => handleClose(e, s)}
@@ -199,9 +219,10 @@ const Question = () => {
         <DialogContent style={{ fontSize: '1.5vw', margin: '0% 5% 0% 5%' }}>
           <DialogContentText>
             <Typography style={{ fontSize: '1.5vw', textAlign: 'center' }}>
-              {question.correctAns.toLowerCase() === userAnswer.toLowerCase()
+              {/* {question.correctAns.toLowerCase() === userAnswer.toLowerCase()
                 ? <CheckCircleIcon style={{ fontSize: '10vw', color: 'green' }} />
-                : <CancelIcon style={{ fontSize: '8vw', color: 'red' }} />}
+                : <CancelIcon style={{ fontSize: '8vw', color: 'red' }} />} */}
+              {showDialogIcon(dialogIcon)}
             </Typography>
             <Typography style={{ fontSize: '1.5vw', textAlign: 'center' }}>
               {dialogMsg}

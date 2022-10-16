@@ -13,7 +13,6 @@ const Number = () => {
       try {
         if (!round) window.open(`/round`, "_self")
         const response = await axios.get(`${apiUrl}/${round.toLowerCase()}`)
-        console.log(response)
         setQuestions(response.data)
       } catch {
         setQuestions([])
