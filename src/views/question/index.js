@@ -31,25 +31,24 @@ const Question = () => {
   const question = location.state?.question;
   const [userAnswer, setUserAnswer] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
+  const [dialogMsg, setDialogMsg] = useState("")
   console.log("question", question);
+  
   const handleAnswer = (event, value) => {
     console.log(value);
     setUserAnswer(value);
     setOpenDialog(true);
+
+    if (question.correctAns.toLowerCase() === value.toLowerCase()) {
+      setDialogMsg("Congratulations! You have given correct Answer.")
+    } else {
+      setDialogMsg("Better Luck Next Time.")
+    }
   };
 
-  // const handleSubmit = () => {
-  //   if (userAnswer === "") {
-  //     setErrMsg("Please select an answer.");
-  //   } else {
-  //     setErrMsg("");
-  //     setOpenDialog(true);
-  //   }
-  // };
   const handleClose = (event, reason) => {
     if (reason === "backdropClick" || reason === "escapeKeyDown") {
-      alert("Please close.");
+      alert("Please close the window.");
     } else {
       setOpenDialog(false);
       window.open("/round", "_self");
@@ -59,17 +58,9 @@ const Question = () => {
     setOpenDialog(true);
   };
 
-  // const printDialogText = () => { 
-  // // Need this funtion to print correct dialog message and icon
-  //   const text = (question.correctAns.toLowerCase() === userAnswer.toLowerCase())
-  //               ? "Congratulations! You have given correct Answer."
-  //               : "Better Luck Next Time.";
-  // };
-
   const handleTimeOut = () => {
-    console.log("time out")
-    // setOpenDialog(true);
-    // window.open("/round", "_self");
+    setOpenDialog(true);
+    setDialogMsg("Your time is up.")
   }
 
   return (
@@ -89,15 +80,8 @@ const Question = () => {
               <b>Subject: </b>
             </FormLabel>
             <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{question.subject}</FormLabel>
-            <Timer seconds={60} onTimeOut={handleTimeOut} />
+            <Timer seconds={3} onTimeOut={handleTimeOut} />
           </Grid>
-          <Typography
-            variant="h6"
-            sx={{ color: (theme) => theme.palette.error.main }}
-            style={{ fontSize: '1.5vw' }}
-          >
-            {errMsg}
-          </Typography>
           <Divider />
           <Grid container specing={2}>
             <Grid item lg={11} md={10} sm={10} sx={{ mt: 3 }}>
@@ -194,9 +178,7 @@ const Question = () => {
                 : <CancelIcon style={{ fontSize: '8vw', color: 'red' }} />}
             </Typography>
             <Typography style={{ fontSize: '1.5vw', textAlign: 'center' }}>
-              {question.correctAns.toLowerCase() === userAnswer.toLowerCase()
-                ? "Congratulations! You have given correct Answer."
-                : "Better Luck Next Time."}
+              {dialogMsg}
             </Typography>
           </DialogContentText>
         </DialogContent>
