@@ -160,16 +160,6 @@ const Question = () => {
           </Grid>
         </CardContent>
         <Divider />
-        {/* <CardActions sx={{ ml: 3, mt: 2, mb: 2 }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => handleSubmit()}
-            disabled={openDialog}
-          >
-            Submit
-          </Button>
-        </CardActions> */}
       </Card>
       {question.round === "round5" ? <Button
         style={{
