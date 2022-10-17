@@ -167,7 +167,7 @@ const Question = () => {
                   <Grid style={{ fontSize: '3vw', width: '100%' }}>
                     {question.ans.map((ans, index) => {
                       let ans1 =
-                        <b style={{ fontSize: '3vw' }}>&nbsp;&nbsp;&nbsp;{options[index + 1]}. {ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
+                        <b style={{ fontSize: '3vw' }}>&nbsp;&nbsp;&nbsp;{`(${options[index + 1]})`} {ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
                       return question.round === "round5" ? (
                         null
                       ) : (
