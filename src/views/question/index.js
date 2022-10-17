@@ -34,8 +34,16 @@ const Question = () => {
   const [openDialog, setOpenDialog] = useState(false)
   const [dialogMsg, setDialogMsg] = useState("")
   const [dialogIcon, setDialogIcon] = useState("")
+  const [correctAns, setCorrectAns] = useState("")
 
   const timerValue = 60
+
+  const options = {
+    1: 'A',
+    2: 'B',
+    3: 'C',
+    4: 'D'
+  }
 
   const handleAnswer = (event, value) => {
     setUserAnswer(value);
@@ -46,7 +54,8 @@ const Question = () => {
       setDialogMsg("Congratulations! You have given Correct Answer.")
     } else {
       setDialogIcon("failed")
-      setDialogMsg(`Better Luck Next Time... \n ${question.correctAns}`)
+      setDialogMsg(`Better Luck Next Time...`)
+      setCorrectAns(question.correctAns)
     }
   };
 
@@ -67,6 +76,7 @@ const Question = () => {
     if (dialogIcon === "") {
       setDialogIcon("warning")
       setDialogMsg(`!!! Sorry !!! Your Time is Up`)
+      setCorrectAns(question.correctAns)
     }
   }
 
@@ -157,8 +167,7 @@ const Question = () => {
                   <Grid style={{ fontSize: '3vw', width: '100%' }}>
                     {question.ans.map((ans, index) => {
                       let ans1 =
-                        <b style={{ fontSize: '3vw' }}>&nbsp;&nbsp;&nbsp;{ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
-
+                        <b style={{ fontSize: '3vw' }}>&nbsp;&nbsp;&nbsp;{options[index + 1]}. {ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
                       return question.round === "round5" ? (
                         null
                       ) : (
@@ -180,7 +189,7 @@ const Question = () => {
         </CardContent>
         <Divider />
       </Card>
-      <Grid style={{textAlign: 'center', marginTop: '5%'}}>
+      <Grid style={{ textAlign: 'center', marginTop: '5%' }}>
         {question.round === "round5" ? <Button
           style={{
             fontSize: '1.5vw',
@@ -227,6 +236,11 @@ const Question = () => {
             <Typography style={{ fontSize: '1.5vw', textAlign: 'center' }}>
               {dialogMsg}
             </Typography>
+            {correctAns ?
+              <Typography style={{ fontSize: '1.5vw', textAlign: 'center', color: 'red' }}>
+                Correct Answer: {correctAns}
+              </Typography>
+              : null}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
