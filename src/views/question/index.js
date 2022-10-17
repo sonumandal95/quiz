@@ -46,7 +46,7 @@ const Question = () => {
       setDialogMsg("Congratulations! You have given Correct Answer.")
     } else {
       setDialogIcon("failed")
-      setDialogMsg("Better Luck Next Time...")
+      setDialogMsg(`Better Luck Next Time... \n ${question.correctAns}`)
     }
   };
 
@@ -66,7 +66,7 @@ const Question = () => {
     setOpenDialog(true)
     if (dialogIcon === "") {
       setDialogIcon("warning")
-      setDialogMsg("!!! Sorry !!! Your Time is Up")
+      setDialogMsg(`!!! Sorry !!! Your Time is Up`)
     }
   }
 
@@ -85,7 +85,7 @@ const Question = () => {
       "round4": 4,
       "round5": 5,
     }
-    return rounds[roundNumber];
+    return rounds[roundNumber.toLowerCase()];
   }
 
   const showDialogIcon = (dialogIconText) => {
@@ -128,12 +128,12 @@ const Question = () => {
           <Divider />
           <Grid container specing={2}>
             <Grid item lg={11} md={10} sm={10} sx={{ mt: 3 }}>
-              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '5vw' }}>
+              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '3vw' }}>
                 <b>{question.question}</b>
               </FormLabel>
               {question.questionHindi ?
                 (<FormLabel sx={{ ml: 3 }}>
-                  <Typography style={{ fontSize: '5vw' }}>
+                  <Typography style={{ fontSize: '3vw' }}>
                     <i>{question.questionHindi}</i>
                   </Typography>
                 </FormLabel>) : null
@@ -154,10 +154,10 @@ const Question = () => {
                     }
                   }}
                 >
-                  <Grid style={{ fontSize: '3.5vw', width: '100%' }}>
+                  <Grid style={{ fontSize: '3vw', width: '100%' }}>
                     {question.ans.map((ans, index) => {
                       let ans1 =
-                        <b style={{ fontSize: '4vw' }}>&nbsp;&nbsp;&nbsp;{ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
+                        <b style={{ fontSize: '3vw' }}>&nbsp;&nbsp;&nbsp;{ans} {question.ansHindi[index] ? `, ${question.ansHindi[index]}` : null}</b>
 
                       return question.round === "round5" ? (
                         null
