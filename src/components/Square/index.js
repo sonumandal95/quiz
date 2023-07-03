@@ -25,7 +25,7 @@ const Square = ({ question }) => {
 
   return (
     <Container>
-      <Button style={{ fontSize: '1.5vw', borderRadius: '1rem', width: '100%' }} variant="contained" size='large' disabled={!disabledButton} onClick={handleNumberClicked}>{question.id}</Button>
+      <Button style={{ fontSize: '4vw', borderRadius: '1rem', width: '100%' }} variant="contained" size='large' disabled={!disabledButton} onClick={handleNumberClicked}>{question.id}</Button>
     </Container>
   )
 }

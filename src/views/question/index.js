@@ -36,7 +36,7 @@ const Question = () => {
   const [dialogIcon, setDialogIcon] = useState("")
   const [correctAns, setCorrectAns] = useState("")
 
-  const timerValue = 60
+  const timerValue = 45
 
   const options = {
     1: 'A',
@@ -138,12 +138,12 @@ const Question = () => {
           <Divider />
           <Grid container specing={2}>
             <Grid item lg={11} md={10} sm={10} sx={{ mt: 3 }}>
-              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '3vw' }}>
+              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '5vw' }}>
                 <b>{question.question}</b>
               </FormLabel>
               {question.questionHindi ?
                 (<FormLabel sx={{ ml: 3 }}>
-                  <Typography style={{ fontSize: '3vw' }}>
+                  <Typography style={{ fontSize: '5vw' }}>
                     <i>{question.questionHindi}</i>
                   </Typography>
                 </FormLabel>) : null

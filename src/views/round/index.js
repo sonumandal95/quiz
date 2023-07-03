@@ -95,7 +95,7 @@ const Round = () => {
                   sx={{ ml: 2, mt: 2 }}
                   variant="contained"
                   onClick={() => handleSubjectClick(round)}
-                  style={{ fontSize: '1.5vw', borderRadius: '1rem', padding: '0rem 2rem 0rem 2rem' }}
+                  style={{ fontSize: '2.5vw', borderRadius: '1rem', padding: '0rem 2rem 0rem 2rem' }}
                 >
                   Round {index + 1}
                 </Button>
@@ -123,7 +123,7 @@ const Round = () => {
             <Container>
               <Button
                 style={{
-                  fontSize: '1.5vw',
+                  fontSize: '2.5vw',
                   borderRadius: '1rem',
                   paddingLeft: '3rem',
                   paddingRight: '2rem'
