@@ -64,7 +64,7 @@ const Question = () => {
       alert("Please close the window.");
     } else {
       setOpenDialog(false);
-      window.open("/round", "_self");
+      window.open(`/numbers/${question.round}`, "_self");
     }
   };
   const handleBackDrop = (e) => {
@@ -112,7 +112,7 @@ const Question = () => {
 
   return (
     <>
-      <Card variant="outlined" style={{ padding: '0% 2% 0% 2%' }}>
+      <Card variant="outlined" style={{ padding: '0% 2% 0% 2%', maginTop: '10%' }}>
         <CardContent>
           <Grid style={{ margin: '1% 0% 1% 0%' }}>
             <FormLabel for="QID" style={{ fontSize: '1.5vw' }}>

@@ -15,7 +15,12 @@ import Info from "@mui/icons-material/Info";
 const Round = () => {
   const [openRuleDialog, setOpenRuleDialog] = useState(false);
   const [rules, setRules] = useState([]);
-  const rounds = ["round1", "round2", "round3", "round4"];
+  const rounds = ["round1", "round2", "round3"];
+  const roundNames = {
+    "round1": "Science",
+    "round2": "Maths",
+    "round3": "Computer"
+  }
   const Container = styled.div((props) => ({
     display: "flex",
     flexDirection: props.column && "column",
@@ -97,7 +102,7 @@ const Round = () => {
                   onClick={() => handleSubjectClick(round)}
                   style={{ fontSize: '2.5vw', borderRadius: '1rem', padding: '0rem 2rem 0rem 2rem' }}
                 >
-                  Round {index + 1}
+                  {roundNames[round]}
                 </Button>
               </Container>
             ))}
@@ -120,6 +125,20 @@ const Round = () => {
             </IconButton>
           </Grid>
           <Grid container rowSpacing={1} style={{ justifyContent: "center" }}>
+          <Container>
+              <Button
+                style={{
+                  fontSize: '2.5vw',
+                  borderRadius: '1rem',
+                  paddingLeft: '3rem',
+                  paddingRight: '2rem'
+                }}
+                variant="contained"
+                onClick={() => handleSubjectClick('round4')}
+              >
+                Buzzer
+              </Button>
+            </Container>
             <Container>
               <Button
                 style={{
@@ -131,7 +150,7 @@ const Round = () => {
                 variant="contained"
                 onClick={() => handleSubjectClick('round5')}
               >
-                Round 5
+                Bonus
               </Button>
             </Container>
           </Grid>

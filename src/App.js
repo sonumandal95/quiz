@@ -3,6 +3,7 @@ import Home from './views/home'
 import Question from './views/question'
 import Round from './views/round'
 import Numbers from './views/numbers'
+import BuzzerRound from './views/buzzerRound'
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/question" element={<Question />}/>
         <Route path="/round" element={<Round />} />
         <Route path="/numbers/:round" element={<Numbers />} />
+        <Route path="/buzzerRound" element={<BuzzerRound />} />
       </Routes>
   );
 }
