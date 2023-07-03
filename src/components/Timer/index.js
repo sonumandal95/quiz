@@ -29,7 +29,7 @@ const Timer = (props) => {
       {minutes === 0 && seconds === 0 ? null : (
         <FormLabel
           style={{
-            fontSize: '1.5vw',
+            fontSize: '3vw',
             marginLeft: '10%',
             fontWeight: 'bolder',
             color: `${minutes === 0 && seconds < 20 ? 'red' : 'green'}`
