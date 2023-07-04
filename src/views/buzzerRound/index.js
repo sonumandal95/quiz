@@ -21,27 +21,26 @@ import {
   Box
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ClearIcon from '@mui/icons-material/Clear';
 import TimerOffIcon from '@mui/icons-material/TimerOff';
 import Visibility from "@mui/icons-material/Visibility";
-import Timer from "../../components/Timer";
+import TimerWithReset from "../../components/TimerWithReset";
 import axios from 'axios'
 import { apiUrl } from '../../utils/api';
 
 const BuzzerRound = () => {
-
+  const defaultTimerValue = 45
   const [questions, setQuestions] = useState("");
   const [question, setQuestion] = useState({});
-  const [userAnswer, setUserAnswer] = useState("");
   const [openDialog, setOpenDialog] = useState(false)
   const [dialogMsg, setDialogMsg] = useState("")
   const [dialogIcon, setDialogIcon] = useState("")
   const [correctAns, setCorrectAns] = useState("")
-  const [timer, setTimer] = useState(45)
+  const ref = useRef();
 
   useEffect(() => {
     const init = async () => {
@@ -62,7 +61,10 @@ const BuzzerRound = () => {
     if (reason === "backdropClick" || reason === "escapeKeyDown") {
       alert("Please close the window.");
     } else {
+      if (question.id === 10) window.open("/round", "_self");
       setOpenDialog(false);
+      setQuestion(questions[question.id])
+      ref.current.resetTimer()
     }
   };
   const handleBackDrop = (e) => {
@@ -70,7 +72,7 @@ const BuzzerRound = () => {
   };
 
   const handleTimeOut = () => {
-    if (dialogIcon === "") {
+    if (!openDialog) {
       setOpenDialog(true)
       setDialogIcon("warning")
       setDialogMsg(`!!! Sorry !!! Your Time is Up`)
@@ -78,21 +80,12 @@ const BuzzerRound = () => {
     }
   }
 
-  const handleShowAnswerButtonClicked = () => {
+  const handleRoundNextButtonClick = () => {
+    ref.current.forceStopTimer()
     setOpenDialog(true)
     setDialogIcon("showAnswer")
     setDialogMsg("")
     setCorrectAns(question.correctAns)
-  }
-
-  const handleRoundNextButtonClick = (questionNumber) => {
-    // reset timer here
-    setTimer(45)
-    console.log('next clicked: ', timer)
-    if (questionNumber === 10)
-      window.open("/round", "_self");
-    else
-      setQuestion(questions[questionNumber])
   }
 
   const showDialogIcon = (dialogIconText) => {
@@ -125,7 +118,7 @@ const BuzzerRound = () => {
               </FormLabel>
               <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>Buzzer Round</FormLabel>
               <FormLabel style={{ fontSize: '1.5vw', right: '-10' }} sx={{ ml: 3 }}>
-                <Timer seconds={timer} onTimeOut={handleTimeOut} />
+                <TimerWithReset ref={ref} seconds={defaultTimerValue} onTimeOut={handleTimeOut} />
               </FormLabel>
 
 
@@ -149,10 +142,10 @@ const BuzzerRound = () => {
         </Card>
       </Box>
       <div style={{
-        flexDirection: 'row', 
-        marginTop: '2rem', 
+        flexDirection: 'row',
+        marginTop: '2rem',
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'center'
       }}
       >
         <Button
@@ -163,19 +156,7 @@ const BuzzerRound = () => {
             paddingRight: '2rem',
           }}
           variant="contained"
-          onClick={handleShowAnswerButtonClicked}
-        >
-          Show answer
-        </Button>
-        <Button
-          style={{
-            fontSize: '2.5vw',
-            borderRadius: '1rem',
-            paddingLeft: '3rem',
-            paddingRight: '2rem',
-          }}
-          variant="contained"
-          onClick={() => handleRoundNextButtonClick(question.id)}
+          onClick={() => handleRoundNextButtonClick()}
         >
           Next
         </Button>

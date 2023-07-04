@@ -138,7 +138,7 @@ const Question = () => {
           <Divider />
           <Grid container specing={2}>
             <Grid item lg={11} md={10} sm={10} sx={{ mt: 3 }}>
-              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '5vw' }}>
+              <FormLabel sx={{ ml: 2 }} style={{ fontSize: '4vw' }}>
                 <b>{question.question}</b>
               </FormLabel>
               {question.questionHindi ?
