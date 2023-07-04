@@ -28,7 +28,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import ClearIcon from '@mui/icons-material/Clear';
 import TimerOffIcon from '@mui/icons-material/TimerOff';
 import Visibility from "@mui/icons-material/Visibility";
-import Timer from "../../components/Timer";
+import TimerWithReset from "../../components/TimerWithReset";
 import axios from 'axios'
 import { apiUrl } from '../../utils/api';
 
