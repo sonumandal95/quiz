@@ -33,7 +33,7 @@ import axios from 'axios'
 import { apiUrl } from '../../utils/api';
 
 const BuzzerRound = () => {
-
+  const defaultTimerValue = 45
   const [questions, setQuestions] = useState("");
   const [question, setQuestion] = useState({});
   const [userAnswer, setUserAnswer] = useState("");
@@ -41,7 +41,7 @@ const BuzzerRound = () => {
   const [dialogMsg, setDialogMsg] = useState("")
   const [dialogIcon, setDialogIcon] = useState("")
   const [correctAns, setCorrectAns] = useState("")
-  const [timer, setTimer] = useState(45)
+  const [timer, setTimer] = useState(defaultTimerValue)
 
   useEffect(() => {
     const init = async () => {
