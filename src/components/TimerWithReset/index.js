@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { FormLabel } from "@mui/material";
 
-const TimerWithReset = (props) => {
+const TimerWithReset = forwardRef((props, ref) => {
   const [minutes, setMinutes] = useState(props.minutes || 0);
   const [seconds, setSeconds] = useState(props.seconds || 0);
-  useEffect(() => {
-    const interval = setInterval(() => {
+  let interval
+  const startTimer = () => {
+    interval = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
       }
@@ -19,8 +20,30 @@ const TimerWithReset = (props) => {
         }
       }
     }, 1000);
+  }
+
+  const stopTimer = () => {
+    clearInterval(interval);
+  }
+
+  useImperativeHandle(ref, () => ({
+    resetTimer() {
+      console.log("reseting timer");
+      stopTimer()
+      setSeconds(props.seconds)
+      startTimer()
+    },
+    forceStopTimer() {
+      console.log("Stoping timer");
+      stopTimer()
+      setSeconds(0)
+    }
+  }));
+
+  useEffect(() => {
+    startTimer();
     return () => {
-      clearInterval(interval);
+      stopTimer();
     };
   });
 
@@ -35,14 +58,11 @@ const TimerWithReset = (props) => {
             color: `${minutes === 0 && seconds < 20 ? 'red' : 'green'}`
           }}
         >
-          {/* {minutes === 0 ? ` ${minutes} minute ` : ` ${minutes} minutes `}:
-          {seconds < 10 ? ` 0${seconds}` : ` ${seconds}`}
-          {seconds < 1 ? ' second ' : ' seconds '} */}
           Time: {seconds}
         </FormLabel>
       )}
     </>
   );
-};
+});
 
 export default TimerWithReset;
