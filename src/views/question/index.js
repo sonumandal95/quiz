@@ -123,10 +123,16 @@ const Question = () => {
               <b>Round: </b>
             </FormLabel>
             <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{printRound(question.round)}</FormLabel>
-            <FormLabel style={{ fontSize: '1.5vw', marginLeft: '10%' }}>
-              <b>Subject: </b>
-            </FormLabel>
-            <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{question.subject}</FormLabel>
+            {
+              question.subject ?
+                <>
+                  <FormLabel style={{ fontSize: '1.5vw', marginLeft: '10%' }}>
+                    <b>Subject: </b>
+                  </FormLabel>
+                  <FormLabel style={{ fontSize: '1.5vw' }} sx={{ ml: 3 }}>{question.subject}</FormLabel>
+                </>
+                : null
+            }
             {
               (question.round === "round5") ?
                 null
