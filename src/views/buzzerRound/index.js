@@ -33,7 +33,7 @@ import axios from 'axios'
 import { apiUrl } from '../../utils/api';
 
 const BuzzerRound = () => {
-  const defaultTimerValue = 45
+  const defaultTimerValue = 20
   const [questions, setQuestions] = useState("");
   const [question, setQuestion] = useState({});
   const [openDialog, setOpenDialog] = useState(false)

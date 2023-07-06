@@ -64,6 +64,16 @@ const Round = () => {
     setOpenRuleDialog(true);
   };
 
+  const handleOpenRule3 = () => {
+    const data = [
+      "Yaha change krna h bonus ka",
+      "इस Round में सही उत्तर (Answer) के लिए 10 marks दिए जाएंगे। गलत उत्तर के लिए minus 5 marks होंगे उत्तर नहीं जान्ने पर आप Question पास कर सकते हैं। पास प्रश्न के लिए minus marks नहीं है।",
+      "पास Question अलग ग्रुप के पास जायेगा और उनके सही Answer के लिए 5 marks और गलत उत्तर के लिए - 5 marks दीये जाएंगे।",
+    ]
+    setRules(data);
+    setOpenRuleDialog(true);
+  };
+
   const handleDialogClose = () => {
     setOpenRuleDialog(!openRuleDialog)
     setRules([])
@@ -110,10 +120,9 @@ const Round = () => {
         </Grid>
       </Box>
       <Box>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid
-            container
-            style={{ justifyContent: "center", marginBottom: "3%" }}
+        <Grid container rowSpacing={1} style={{ justifyContent: "center" }}>
+          <Container
+            style={{ justifyContent: "center", marginBottom: "3%", marginRight: "13%" }}
           >
             <IconButton
               color="primary"
@@ -123,7 +132,20 @@ const Round = () => {
             >
               <Info style={{ fontSize: '3vw' }} />
             </IconButton>
-          </Grid>
+          </Container>
+          <Container
+            style={{ justifyContent: "center", marginBottom: "3%" }}
+          >
+            <IconButton
+              color="primary"
+              aria-label="rules"
+              component="label"
+              onClick={handleOpenRule3}
+            >
+              <Info style={{ fontSize: '3vw' }} />
+            </IconButton>
+          </Container>
+
           <Grid container rowSpacing={1} style={{ justifyContent: "center" }}>
           <Container>
               <Button

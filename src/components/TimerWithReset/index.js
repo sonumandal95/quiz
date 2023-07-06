@@ -55,7 +55,7 @@ const TimerWithReset = forwardRef((props, ref) => {
             fontSize: '3vw',
             marginLeft: '10%',
             fontWeight: 'bolder',
-            color: `${minutes === 0 && seconds < 20 ? 'red' : 'green'}`
+            color: `${minutes === 0 && seconds <= 10 ? 'red' : 'green'}`
           }}
         >
           Time: {seconds}

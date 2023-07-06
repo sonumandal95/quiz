@@ -29,25 +29,31 @@ const Number = () => {
 
   return (
     <Grid style={{ textAlign: 'center', fontSize: '2vw' }}>
-      {round === "round4" ? <h2>Start</h2> : <h2>Select a question number</h2>}
+      {round === "round4" ? null : <h2>Select a question number</h2>}
       <Grid container columnSpacing={2} style={{ 'justifyContent': 'center' }}>
         {
           round === "round4"
             ?
-            <>
+            <Grid>
+              <Grid>
               <Button
                 style={{
                   fontSize: '1.5vw',
                   borderRadius: '1rem',
                   paddingLeft: '3rem',
-                  paddingRight: '2rem'
+                  paddingRight: '3rem',
+                  marginTop: '5rem'
                 }}
                 variant="contained"
                 onClick={handleBuzzerRoundStartClick}
               >
-                Next
+                Start
               </Button>
-            </>
+              </Grid>
+              <Grid style={{marginTop: '10rem'}}>
+                <h2>You are ready to Begin...</h2>
+                </Grid>
+            </Grid>
             :
             <>
               {
@@ -62,7 +68,7 @@ const Number = () => {
           fontSize: '1.5vw',
           borderRadius: '1rem',
           paddingLeft: '3rem',
-          paddingRight: '2rem',
+          paddingRight: '3rem',
           marginTop: '10%'
         }}
         variant="contained"

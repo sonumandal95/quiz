@@ -20,7 +20,7 @@ const Home = () => {
       <Grid rowSpacing={2}>
         <h2>St. Robert's High School, Parsudih</h2>
         <img width={'50%'} height={'50%'} src="schoolLogo.png" />
-        <h2>Welcome to Science Quiz</h2>
+        <h1>Welcome to Science Quiz</h1>
         <Button style={{ fontSize: '1.5vw', padding: '0% 2% 0% 2%' }} variant="contained" onClick={handleNextClick}>Next</Button>
       </Grid>
     </Container>
